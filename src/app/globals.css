@@ -8,6 +8,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #4f8df7;
+  --primary-light: #e0e9ff;
+  --secondary: #34d399;
+  --secondary-light: #ecfdf5;
+  --accent: #f59e0b;
+  --accent-light: #fef3c7;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,4 +27,59 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Animasyonlu fırça darbeleri için stiller */
+.brush-stroke {
+  position: absolute;
+  opacity: 0.06;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+.brush-stroke-1 {
+  top: 10%;
+  left: 5%;
+  width: 35%;
+  height: 15%;
+  background: var(--primary);
+  border-radius: 100% 0 100% 0;
+  transform: rotate(-15deg);
+  animation: float 15s ease-in-out infinite;
+}
+
+.brush-stroke-2 {
+  top: 40%;
+  right: 10%;
+  width: 25%;
+  height: 20%;
+  background: var(--secondary);
+  border-radius: 70% 30% 50% 40%;
+  transform: rotate(25deg);
+  animation: float 12s ease-in-out infinite 1s;
+}
+
+.brush-stroke-3 {
+  bottom: 15%;
+  left: 15%;
+  width: 30%;
+  height: 15%;
+  background: var(--accent);
+  border-radius: 40% 60% 70% 30%;
+  transform: rotate(-10deg);
+  animation: float 18s ease-in-out infinite 2s;
+}
+
+.brush-container {
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotation, 0deg));
+  }
+  50% {
+    transform: translateY(10px) rotate(var(--rotation, 0deg));
+  }
 }

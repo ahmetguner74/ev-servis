@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ev Servis Hizmetleri Platformu
 
-## Getting Started
+Bu proje, kullanıcıların ev hizmetleri talep edebileceği ve profesyonel servis sağlayıcılarla buluşabileceği kapsamlı bir platformdur.
 
-First, run the development server:
+## Özellikler
+
+- Kullanıcı ve servis sağlayıcı profilleri
+- Kategori bazlı hizmet araması
+- Adım adım hizmet talebi sihirbazı
+- İletişim ve randevu yönetimi
+- Derecelendirme ve yorumlar
+- Güvenli ödeme seçenekleri
+
+## Teknik Yapı
+
+- Next.js ile geliştirilmiştir
+- TypeScript kullanılmıştır
+- Tailwind CSS ile stil verilmiştir
+- Responsive tasarım (Tüm cihazlarda uyumlu)
+
+## Son Tasarım Güncellemeleri
+
+### Animasyonlu Boya Fırçası Arka Plan Efektleri
+- Ana sayfada ve modallarda görsel olarak çekici transparan boya fırçası efektleri uygulandı
+- Fırçalar hafif animasyonlarla hareket etmekte, dinamik bir görünüm kazandırmakta
+- CSS keyframe animasyonları ile fluent hareketler eklendi
+
+### Geliştirilmiş Renk Paleti ve Tipografi
+- Tutarlı bir renk paleti uygulandı (mavi, yeşil, amber)
+- Görsel hiyerarşiyi destekleyen tipografi iyileştirmeleri yapıldı
+
+### Modern UI Bileşenleri
+- Kartlar, butonlar ve form elemanları yeniden tasarlandı
+- Hover ve aktif durumlar için güzel geçiş efektleri eklendi
+- Gölge ve boyut değişimleri ile etkileşimli elementlerin çekiciliği artırıldı
+
+### Scroll-Sensitive Header
+- Sayfa kaydırıldığında görünümü değişen akıllı bir header eklendi
+- Sayfa başında daha belirgin, aşağı kaydırıldığında daha kompakt
+
+### Kategori Seçim Arayüzü
+- Daha kullanıcı dostu ve görsel olarak çekici kategori grid sistemi
+- Seçim durumları için geliştirilmiş görsel geri bildirimler
+
+## Çalıştırma
 
 ```bash
+# Bağımlılıkları yükleyin
+npm install
+
+# Geliştirme sunucusunu başlatın
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Uygulamayı build edin
+npm run build
+
+# Üretim sürümünü çalıştırın
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Kurulum
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Repoyu klonlayın
+2. `npm install` komutunu çalıştırın
+3. `.env` dosyasını oluşturun ve gerekli değişkenleri ayarlayın
+4. `npm run dev` ile geliştirme sunucusunu başlatın
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Katkıda Bulunma
 
-## Learn More
+1. Bu repoyu forklayın
+2. Feature branch'i oluşturun (`git checkout -b feature/amazing-feature`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Add some amazing feature'`)
+4. Branch'e push edin (`git push origin feature/amazing-feature`)
+5. Pull Request açın
 
-To learn more about Next.js, take a look at the following resources:
+## Lisans
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## İletişim
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Proje Linki: [https://github.com/yourusername/ev-servis](https://github.com/yourusername/ev-servis)

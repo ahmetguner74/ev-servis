@@ -1,0 +1,207 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String    @id @default(cuid())
+  name              String?
+  email             String    @unique
+  emailVerified     DateTime?
+  image             String?
+  password          String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  role              Role      @default(USER)
+  address           String?
+  phoneNumber       String?
+  bookings          Booking[]
+  sentMessages      Message[] @relation("SentMessages")
+  receivedMessages  Message[] @relation("ReceivedMessages")
+  reviews           Review[]  @relation("UserReviews")
+  providerProfile   Provider?
+  favorites         Favorite[]
+}
+
+model Provider {
+  id                String    @id @default(cuid())
+  userId            String    @unique
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bio               String?
+  services          Service[]
+  serviceAreas      ServiceArea[]
+  availability      Availability[]
+  verificationStatus VerificationStatus @default(PENDING)
+  verifiedAt        DateTime?
+  companyName       String?
+  businessLicense   String?
+  insuranceInfo     String?
+  bookings          Booking[]
+  reviews           Review[]  @relation("ProviderReviews")
+  averageRating     Float?
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  duration    Int      // in minutes
+  providerId  String
+  provider    Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  bookings    Booking[]
+  favorites   Favorite[]
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  icon        String?
+  services    Service[]
+  parentId    String?
+  parent      Category? @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryHierarchy")
+}
+
+model ServiceArea {
+  id          String   @id @default(cuid())
+  providerId  String
+  provider    Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  zipCode     String
+  city        String
+  state       String?
+  country     String
+  latitude    Float?
+  longitude   Float?
+}
+
+model Availability {
+  id          String       @id @default(cuid())
+  providerId  String
+  provider    Provider     @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  dayOfWeek   DayOfWeek
+  startTime   String       // Format: "HH:MM"
+  endTime     String       // Format: "HH:MM"
+  isAvailable Boolean      @default(true)
+  
+  @@unique([providerId, dayOfWeek, startTime, endTime])
+}
+
+model Booking {
+  id          String       @id @default(cuid())
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  providerId  String
+  provider    Provider     @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  serviceId   String
+  service     Service      @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  date        DateTime
+  startTime   String       // Format: "HH:MM"
+  endTime     String       // Format: "HH:MM"
+  status      BookingStatus @default(PENDING)
+  totalPrice  Float
+  notes       String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  reviews     Review[]
+  messages    Message[]
+}
+
+model Review {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation("UserReviews", fields: [userId], references: [id], onDelete: Cascade)
+  providerId    String
+  provider      Provider  @relation("ProviderReviews", fields: [providerId], references: [id], onDelete: Cascade)
+  bookingId     String
+  booking       Booking   @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  rating        Int       // 1-5 stars
+  comment       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@unique([userId, bookingId])
+}
+
+model Message {
+  id          String    @id @default(cuid())
+  content     String
+  senderId    String
+  sender      User      @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  receiverId  String
+  receiver    User      @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  bookingId   String?
+  booking     Booking?  @relation(fields: [bookingId], references: [id])
+  isRead      Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Favorite {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  serviceId   String
+  service     Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  
+  @@unique([userId, serviceId])
+}
+
+model ErrorLog {
+  id          String    @id @default(cuid())
+  errorCode   String?
+  message     String
+  stack       String?
+  userId      String?
+  route       String?
+  method      String?
+  createdAt   DateTime  @default(now())
+  resolved    Boolean   @default(false)
+  resolvedAt  DateTime?
+}
+
+enum Role {
+  USER
+  PROVIDER
+  ADMIN
+}
+
+enum VerificationStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  RESCHEDULED
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
