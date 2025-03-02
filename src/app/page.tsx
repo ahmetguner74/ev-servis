@@ -25,53 +25,23 @@ export default function Home() {
     const fetchPopularCategories = async () => {
       setLoading(true);
       try {
-        // Normalde bir API isteği yapılır, şimdilik mock veri kullanıyoruz
-        setTimeout(() => {
-          const mockCategories: Category[] = [
-            {
-              id: "1",
-              name: "Boya",
-              description: "Evinizin iç ve dış boyası için profesyonel hizmet",
-              icon: "🎨",
-              isPopular: true
-            },
-            {
-              id: "2",
-              name: "Tadilat",
-              description: "Her türlü ev tadilat ve renovasyon işleri",
-              icon: "🔨",
-              isPopular: true
-            },
-            {
-              id: "3",
-              name: "Tesisat",
-              description: "Su, elektrik ve doğalgaz tesisatı kurulum ve tamir",
-              icon: "🔧",
-              isPopular: true
-            },
-            {
-              id: "4",
-              name: "Temizlik",
-              description: "Eviniz için kapsamlı temizlik hizmetleri",
-              icon: "🧹",
-              isPopular: true
-            },
-            {
-              id: "5",
-              name: "Nakliyat",
-              description: "Ev ve ofis taşıma hizmetleri",
-              icon: "🚚",
-              isPopular: true
-            }
-          ];
-          
-          // Sadece isPopular=true olan kategorilerden ilk 3'ünü seçiyoruz
-          setPopularCategories(mockCategories.filter(cat => cat.isPopular).slice(0, 3));
-          setLoading(false);
-        }, 500);
+        // Tüm kategorileri getir ve popüler olanları filtrele
+        const response = await fetch('/api/admin/categories');
+        const data = await response.json();
+        
+        if (data.success) {
+          // Sadece isPopular=true olan kategorileri filtrele ve en fazla 3 tane göster
+          setPopularCategories(data.categories.filter((cat: Category) => cat.isPopular).slice(0, 3));
+        } else {
+          throw new Error(data.message || 'Kategoriler yüklenirken bir hata oluştu');
+        }
+        setLoading(false);
       } catch (error) {
         console.error("Popüler kategoriler yüklenirken hata:", error);
         setLoading(false);
+        
+        // Hata durumunda boş bir dizi göster
+        setPopularCategories([]);
       }
     };
     

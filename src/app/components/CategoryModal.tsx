@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 import ServiceWizard from "./ServiceWizard";
 
 // Kategori tipi tanımı
@@ -50,82 +51,26 @@ export default function CategoryModal({ isOpen, onClose }: CategoryModalProps) {
   const fetchCategories = async () => {
     setLoading(true);
     try {
-      // Admin panelindeki kategorileri getiren aynı mock veriyi kullanıyoruz
-      // İleride burası gerçek API çağrısı ile değiştirilecek
-      // Gerçek implementasyon:
-      // const response = await fetch('/api/admin/categories');
-      // const data = await response.json();
-      // if (data.success) {
-      //   setCategories(data.categories);
-      // } else {
-      //   throw new Error(data.message || 'Kategoriler yüklenirken bir hata oluştu');
-      // }
+      // Admin panelindeki kategorileri getiren API çağrısı
+      const response = await fetch('/api/admin/categories');
+      const data = await response.json();
       
-      setTimeout(() => {
-        const mockCategories: Category[] = [
-          {
-            id: "1",
-            name: "Boya",
-            description: "Evinizin iç ve dış boyası için profesyonel hizmet",
-            icon: "🎨",
-            isPopular: true
-          },
-          {
-            id: "2",
-            name: "Tadilat",
-            description: "Her türlü ev tadilat ve renovasyon işleri",
-            icon: "🔨",
-            isPopular: false
-          },
-          {
-            id: "3", 
-            name: "Tesisat",
-            description: "Su, elektrik ve doğalgaz tesisatı kurulum ve tamir",
-            icon: "🔧",
-            isPopular: false
-          },
-          {
-            id: "4",
-            name: "Temizlik",
-            description: "Eviniz için kapsamlı temizlik hizmetleri",
-            icon: "🧹",
-            isPopular: true
-          },
-          {
-            id: "5",
-            name: "Nakliyat",
-            description: "Ev ve ofis taşıma hizmetleri",
-            icon: "🚚",
-            isPopular: true
-          },
-          {
-            id: "6",
-            name: "Mobilya Montaj",
-            description: "Mobilya kurulum ve montaj hizmetleri",
-            icon: "🪑",
-            isPopular: false
-          },
-          {
-            id: "7",
-            name: "Bahçe Bakımı",
-            description: "Bahçe düzenleme ve bakım hizmetleri",
-            icon: "🌱",
-            isPopular: false
-          },
-          {
-            id: "8",
-            name: "Elektrik",
-            description: "Elektrik tesisatı ve tamir hizmetleri",
-            icon: "⚡",
-            isPopular: false
-          }
-        ];
-        setCategories(mockCategories);
-        setLoading(false);
-      }, 800);
+      if (data.success) {
+        setCategories(data.categories);
+      } else {
+        throw new Error(data.message || 'Kategoriler yüklenirken bir hata oluştu');
+      }
+      
+      setLoading(false);
     } catch (error) {
       console.error("Kategorileri getirirken hata oluştu:", error);
+      
+      // Hata durumunda boş liste göster
+      setCategories([]);
       setLoading(false);
+      
+      // Kullanıcıya bildirim göster
+      toast.error("Kategoriler yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
     }
   };
 

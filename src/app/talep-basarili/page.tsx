@@ -31,7 +31,7 @@ export default function RequestSuccessPage() {
           
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Talebiniz Başarıyla Alındı!</h1>
           <p className="text-gray-600 mb-6">
-            En kısa sürede sizi arayacağız. Talebiniz için teşekkür ederiz.
+            Usta ekibimiz en kısa sürede sizinle iletişime geçecek. Talebiniz için teşekkür ederiz.
           </p>
           
           <div className="border border-gray-200 rounded-lg p-4 mb-6 bg-gray-50">
@@ -41,7 +41,7 @@ export default function RequestSuccessPage() {
                 <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                <span>24 saat içinde talebinizle ilgili hizmet sağlayıcılarımız size ulaşacak.</span>
+                <span>Bilgileriniz usta ekibimize otomatik olarak iletilmiştir.</span>
               </li>
               <li className="flex items-start">
                 <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

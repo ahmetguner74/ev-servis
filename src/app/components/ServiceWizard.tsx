@@ -311,12 +311,12 @@ export default function ServiceWizard({ isOpen, onClose, categoryId, categoryNam
           
           Form Verileri:
           ${Object.entries(data.formData).map(([key, value]) => {
-            const step = data.flow?.steps.find(s => s.id === key);
+            const step = data.flow?.steps.find((s: WizardStep) => s.id === key);
             if (!step) return `${key}: ${value}`;
             
             // Seçenek tipinde değerler için etiketleri ekle
             if (step.options && (step.type === 'radio' || step.type === 'checkbox' || step.type === 'select')) {
-              const option = step.options.find(o => o.id === value);
+              const option = step.options.find((o: {id: string, label: string, value: string}) => o.id === value);
               if (option) {
                 return `${step.question}: ${option.label}`;
               }
@@ -372,13 +372,16 @@ export default function ServiceWizard({ isOpen, onClose, categoryId, categoryNam
       if (!emailSuccess) {
         toast.error("E-posta gönderilirken bir hata oluştu, ancak talebiniz alındı.");
       } else {
-        toast.success("Talebiniz başarıyla alındı. En kısa sürede size dönüş yapılacak.");
+        toast.success("Talebiniz başarıyla alındı. En kısa sürede size dönüş yapılacak. Usta ekibimiz sizinle iletişime geçecek.");
       }
       
-      // WhatsApp bağlantısını aç
-      const openWhatsApp = window.confirm("WhatsApp üzerinden hizmet sağlayıcılarımıza doğrudan ulaşmak ister misiniz?");
-      if (openWhatsApp) {
+      // WhatsApp bağlantısını otomatik olarak aç (kullanıcıya sormadan)
+      try {
+        // Yeni pencere açarak WhatsApp bağlantısını başlat
         window.open(whatsappLink, '_blank');
+      } catch (whatsappError) {
+        console.error("WhatsApp yönlendirmesinde hata:", whatsappError);
+        // WhatsApp açılamazsa sessizce devam et, kullanıcı deneyimini bozmamak için
       }
       
       onClose();
