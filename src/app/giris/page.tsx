@@ -57,9 +57,9 @@ export default function GirisPage() {
       {/* Sol kısım - Form */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-5 sm:px-10 lg:px-20 py-16">
         <div className="max-w-md w-full mx-auto">
-          <h1 className="text-3xl font-bold mb-6">Giriş Yap</h1>
+          <h1 className="text-3xl font-bold mb-6">Müşteri Girişi</h1>
           <p className="text-gray-600 mb-8">
-            Hoş geldiniz! Devam etmek için hesabınıza giriş yapın.
+            Hoş geldiniz! Hizmet almak için müşteri hesabınıza giriş yapın.
           </p>
 
           {/* Supabase Auth UI */}
@@ -94,12 +94,29 @@ export default function GirisPage() {
           </div>
 
           <div className="text-center mt-8">
-            <p className="text-sm text-gray-600">
-              Hesabınız yok mu?{" "}
-              <Link href="/kayit" className="font-medium text-blue-600 hover:text-blue-500">
-                Hemen Kaydolun
+            <div className="text-sm text-gray-600 mb-4">
+              Müşteri hesabınız yok mu? Hemen üye olun:
+            </div>
+            <Link 
+              href="/musteri-kayit" 
+              className="w-full inline-block bg-gray-100 text-blue-600 font-medium py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              Müşteri Hesabı Oluştur
+            </Link>
+          </div>
+
+          <div className="mt-6 pt-6 border-t border-gray-200">
+            <div className="text-center">
+              <p className="text-sm text-gray-600 mb-4">
+                Hizmet sağlayıcı (usta) mısınız?
+              </p>
+              <Link 
+                href="/kayit" 
+                className="w-full inline-block bg-blue-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Usta Olarak Kaydol
               </Link>
-            </p>
+            </div>
           </div>
         </div>
       </div>
