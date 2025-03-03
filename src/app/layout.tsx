@@ -5,6 +5,8 @@ import { AuthProvider } from "./providers/AuthProvider";
 import { ToastProvider } from "./providers/ToastProvider";
 import Header from "./components/Header";
 import Script from "next/script";
+import { Toaster } from "react-hot-toast";
+import SupabaseProvider from "./auth/SupabaseProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,12 +35,15 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={inter.className}>
-        <AuthProvider>
-          <ToastProvider>
-            <Header />
-            {children}
-          </ToastProvider>
-        </AuthProvider>
+        <SupabaseProvider>
+          <AuthProvider>
+            <Toaster />
+            <ToastProvider>
+              <Header />
+              {children}
+            </ToastProvider>
+          </AuthProvider>
+        </SupabaseProvider>
       </body>
     </html>
   );

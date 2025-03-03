@@ -8,6 +8,13 @@ const nextConfig = {
     // Deployment sırasında TypeScript kontrollerini devre dışı bırak
     ignoreBuildErrors: true,
   },
+  // Environment değişkenlerine runtime'da erişim için
+  serverRuntimeConfig: {
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+  },
+  publicRuntimeConfig: {
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL
+  },
 };
 
 module.exports = nextConfig; 

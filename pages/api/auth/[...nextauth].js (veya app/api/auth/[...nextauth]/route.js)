@@ -1,0 +1,22 @@
+providers: [
+  GoogleProvider({
+    clientId: process.env.GOOGLE_ID,
+    clientSecret: process.env.GOOGLE_SECRET,
+    // Callback URL'lerin Vercel URL'inize doğru şekilde ayarlandığından emin olun
+  }),
+  // Diğer sağlayıcılar...
+], 
+
+export default NextAuth({
+  // ...
+  // NEXTAUTH_URL'in doğru ayarlandığından emin olun
+  // Otomatik algılama için şöyle bir kod ekleyin:
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      // baseUrl, NEXTAUTH_URL değerini kullanır
+      return url.startsWith(baseUrl) ? url : baseUrl;
+    },
+    // ...
+  },
+  // ...
+}) 

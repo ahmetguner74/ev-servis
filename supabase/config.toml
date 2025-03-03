@@ -1,0 +1,54 @@
+# Supabase Yapılandırma Dosyası
+
+# API ayarları
+[api]
+# Port = 54321
+# Adres = "0.0.0.0"
+# Swagger dökümantasyon UI'ı
+# OpenApiPath = "https://example.com/api/v1"
+
+# JWT ayarları
+[auth]
+# JWT için şifreleme sırrı
+# Otomatik olarak üretilir
+# Secret = "your-super-secret-jwt-secret-key"
+
+[auth.email]
+# E-posta doğrulaması gerektir
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = true
+
+# E-posta onay bağlantısı için yönlendirme
+site_url = "https://ev-servis-npru.vercel.app"
+# Doğrulama URL'i
+invite_template = "Ev Servisi'ne hoş geldiniz! Hesabınızı onaylamak için lütfen aşağıdaki bağlantıya tıklayın."
+confirmation_template = "E-posta adresinizi onaylamak için aşağıdaki bağlantıya tıklayın."
+
+# OAuth sağlayıcıları
+[auth.external.google]
+enabled = true
+secret = ""  # Daha sonra eklenecek
+client_id = ""  # Daha sonra eklenecek
+redirect_uri = "https://ev-servis-npru.vercel.app/auth/callback"
+
+[auth.external.github]
+enabled = true
+secret = ""  # Daha sonra eklenecek
+client_id = ""  # Daha sonra eklenecek
+redirect_uri = "https://ev-servis-npru.vercel.app/auth/callback"
+
+# Depolama ayarları
+[storage]
+file_size_limit = "50MiB"
+
+# Varsayılan bucket
+[[storage.buckets]]
+name = "service-images"
+public = true
+file_size_limit = "10MiB"
+allowed_mime_types = [
+  "image/png",
+  "image/jpeg",
+  "image/webp"
+] 

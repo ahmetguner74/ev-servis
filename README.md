@@ -1,82 +1,59 @@
-# Ev Servis Hizmetleri Platformu
+# Ev Hizmetleri Platformu
 
-Bu proje, kullanıcıların ev hizmetleri talep edebileceği ve profesyonel servis sağlayıcılarla buluşabileceği kapsamlı bir platformdur.
+Kullanıcıları çeşitli ev hizmetleri için hizmet sağlayıcılarla buluşturan kapsamlı bir web platformu.
 
 ## Özellikler
 
-- Kullanıcı ve servis sağlayıcı profilleri
-- Kategori bazlı hizmet araması
-- Adım adım hizmet talebi sihirbazı
-- İletişim ve randevu yönetimi
-- Derecelendirme ve yorumlar
-- Güvenli ödeme seçenekleri
+- Kullanıcı ve servis sağlayıcı kayıt/giriş sistemi (Email, Google)
+- Hizmet kategorileri ve hizmet listeleme
+- Randevu oluşturma ve takip etme
+- Supabase ile güçlendirilmiş veritabanı ve kimlik doğrulama
+- Gerçek zamanlı bildirimler ve sohbet
+- Dosya depolama (servis ve profil resimleri)
+- Responsive tasarım
 
-## Teknik Yapı
+## Teknolojiler
 
-- Next.js ile geliştirilmiştir
-- TypeScript kullanılmıştır
-- Tailwind CSS ile stil verilmiştir
-- Responsive tasarım (Tüm cihazlarda uyumlu)
-
-## Son Tasarım Güncellemeleri
-
-### Animasyonlu Boya Fırçası Arka Plan Efektleri
-- Ana sayfada ve modallarda görsel olarak çekici transparan boya fırçası efektleri uygulandı
-- Fırçalar hafif animasyonlarla hareket etmekte, dinamik bir görünüm kazandırmakta
-- CSS keyframe animasyonları ile fluent hareketler eklendi
-
-### Geliştirilmiş Renk Paleti ve Tipografi
-- Tutarlı bir renk paleti uygulandı (mavi, yeşil, amber)
-- Görsel hiyerarşiyi destekleyen tipografi iyileştirmeleri yapıldı
-
-### Modern UI Bileşenleri
-- Kartlar, butonlar ve form elemanları yeniden tasarlandı
-- Hover ve aktif durumlar için güzel geçiş efektleri eklendi
-- Gölge ve boyut değişimleri ile etkileşimli elementlerin çekiciliği artırıldı
-
-### Scroll-Sensitive Header
-- Sayfa kaydırıldığında görünümü değişen akıllı bir header eklendi
-- Sayfa başında daha belirgin, aşağı kaydırıldığında daha kompakt
-
-### Kategori Seçim Arayüzü
-- Daha kullanıcı dostu ve görsel olarak çekici kategori grid sistemi
-- Seçim durumları için geliştirilmiş görsel geri bildirimler
-
-## Çalıştırma
-
-```bash
-# Bağımlılıkları yükleyin
-npm install
-
-# Geliştirme sunucusunu başlatın
-npm run dev
-
-# Uygulamayı build edin
-npm run build
-
-# Üretim sürümünü çalıştırın
-npm start
-```
+- Next.js 15.2.0
+- React 19.0.0
+- TypeScript
+- Tailwind CSS
+- Supabase (Veritabanı, Auth, Storage, Realtime)
+- EmailJS
 
 ## Kurulum
 
-1. Repoyu klonlayın
-2. `npm install` komutunu çalıştırın
-3. `.env` dosyasını oluşturun ve gerekli değişkenleri ayarlayın
-4. `npm run dev` ile geliştirme sunucusunu başlatın
+1. Repoyu klonlayın:
+```bash
+git clone https://github.com/username/ev-servis-yeni.git
+cd ev-servis-yeni
+```
 
-## Katkıda Bulunma
+2. Gerekli paketleri yükleyin:
+```bash
+npm install
+```
 
-1. Bu repoyu forklayın
-2. Feature branch'i oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add some amazing feature'`)
-4. Branch'e push edin (`git push origin feature/amazing-feature`)
-5. Pull Request açın
+3. `.env.example` dosyasını `.env.local` olarak kopyalayın ve gerekli bilgileri doldurun:
+```bash
+cp .env.example .env.local
+```
+
+4. Supabase'de yeni bir proje oluşturun ve gerekli bilgileri `.env.local` dosyasına ekleyin.
+
+5. Supabase SQL editöründe `supabase/migrations/20231228000000_initial_schema.sql` dosyasındaki SQL kodunu çalıştırın.
+
+6. Geliştirme sunucusunu başlatın:
+```bash
+npm run dev
+```
+
+7. Tarayıcınızda `http://localhost:3000` adresini açın.
+
+## Deployment
+
+Proje Vercel'e deploy edilmek üzere yapılandırılmıştır. Daha fazla bilgi için `DEPLOYMENT.md` dosyasına bakın.
 
 ## Lisans
 
-Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
-
-## İletişim
-
-Proje Linki: [https://github.com/yourusername/ev-servis](https://github.com/yourusername/ev-servis)
+MIT

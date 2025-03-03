@@ -9,7 +9,12 @@
     "NEXT_PUBLIC_EMAILJS_SERVICE_ID": "service_iqjzqzf",
     "NEXT_PUBLIC_EMAILJS_TEMPLATE_ID": "template_6sbkdsj",
     "NEXT_PUBLIC_EMAILJS_PUBLIC_KEY": "Kv-_z4bKhVQV15bsX",
-    "NEXT_PUBLIC_EMAILJS_TO_EMAIL": "ahmetguner74@gmail.com"
+    "NEXT_PUBLIC_EMAILJS_TO_EMAIL": "ahmetguner74@gmail.com",
+    "NEXTAUTH_SECRET": "çok-güvenli-bir-anahtar-kullanın",
+    "NEXTAUTH_URL": "https://ev-servis-npru.vercel.app",
+    "NEXT_PUBLIC_SUPABASE_URL": "https://pqkpmnydmiwpdjqakyyd.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxa3BtbnlkbWl3cGRqcWFreXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEwMjI5OTMsImV4cCI6MjA1NjU5ODk5M30.Iad1HLOWrIBG4zj2UvxABSNnbqjbZdUJU73hLWKM_-E",
+    "DATABASE_URL": "postgresql://postgres:Selim-16@db.pqkpmnydmiwpdjqakyyd.supabase.co:5432/postgres"
   },
   "headers": [
     {
